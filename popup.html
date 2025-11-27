@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Threat Scanner</title>
+<style>
+  body {
+    font-family: "Courier New", monospace;
+    background-color: #0d0d0d;
+    color: #fff;
+    width: 440px; /* Bigger popup */
+    padding: 20px;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 26px;
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    color: #000;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    transform: scale(1.03);
+  }
+
+  input[type="text"], input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: #111;
+    color: #fff;
+    margin-top: 10px;
+  }
+
+  #result {
+    background-color: #111;
+    padding: 12px;
+    border-radius: 6px;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  #threatMeter {
+    height: 10px;
+    width: 0%;
+    border-radius: 6px;
+    background: #00ff99;
+    margin-top: 15px;
+    transition: width 0.7s ease, background 0.7s ease;
+  }
+
+  .loader {
+    font-weight: bold;
+    color: #00ffff;
+    font-size: 16px;
+  }
+
+  .loader .dots {
+    display: inline-block;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+  }
+
+  hr {
+    margin: 20px 0;
+    border-color: #333;
+  }
+</style>
+</head>
+<body>
+
+<h2>AI Threat Scanner</h2>
+
+<button class="btn" id="scanPageBtn">🔍 Scan Current Page</button>
+
+<input type="text" id="urlInput" placeholder="Enter URL to scan">
+<button class="btn" id="scanUrlBtn">Scan URL</button>
+
+<div id="threatMeter"></div>
+<hr>
+
+<div id="result">Results will appear here...</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

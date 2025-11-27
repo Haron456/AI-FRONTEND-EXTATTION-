@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "AI URL Analyzer",
+  "version": "1.0",
+  "description": "Scan URLs and pages for threats and get AI explanations.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:8000/*",
+    "http://localhost:8000/*",
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["popup.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
+
