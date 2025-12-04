@@ -19,7 +19,7 @@ const scanPageBtn = document.getElementById("scanPageBtn");
 const scanUrlBtn = document.getElementById("scanUrlBtn");
 
 // -------------------------
-// Backend detection FIXED
+// Backend detection
 // -------------------------
 async function detectBackend() {
     try {
@@ -27,12 +27,12 @@ async function detectBackend() {
         if (!res.ok) throw new Error("Bad response");
 
         backendDetected = true;
-        resultDiv.innerHTML = `<span style="color:green;">Backend detected ✅</span>`;
+        resultDiv.innerHTML = `<span style="color:green;">ONLINE</span>`;
         return true;
 
     } catch (e) {
         backendDetected = false;
-        resultDiv.innerHTML = `<span style="color:red;">Backend unavailable ❌</span>`;
+        resultDiv.innerHTML = `<span style="color:red;">OFFLINE</span>`;
         return false;
     }
 }
@@ -114,38 +114,24 @@ async function analyzeURL(url) {
 }
 
 // -------------------------
-// -------------------------
-// Display results (FIXED AI SUMMARY)
+// Show results
 // -------------------------
 function displayResults(data) {
     const riskColors = { high: "#ff4d4d", medium: "#ffcc33", low: "#00ff99" };
     const riskColor = riskColors[data.risk] || "#00ff99";
 
-    // Threat meter
     threatMeter.style.background = riskColor;
     threatMeter.style.width = `${(data.score || 0) * 100}%`;
 
-    // HTML preview safe render
-    const preview = (data.preview || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const preview = (data.preview || "").replace(/</g, "&lt;").replace(/>/g, "&gt;/");
 
-    // FIXED — backend returns summary_text, not summary
     const aiSummary = data.summary_text || data.summary || "No summary available";
-
-    // FIXED — format categories with domain age if available
-    const categories = (data.categories || [])
-        .map(c => {
-            if (c.includes("new_domain") && data.domain_age_days !== undefined) {
-                return `new_domain (${data.domain_age_days} days)`;
-            }
-            return c;
-        })
-        .join("");
 
     resultDiv.innerHTML = `
         <b>URL:</b> ${data.url}<br>
         <b>Risk:</b> 
         <span style="color:${riskColor}; font-weight:700">${data.risk}</span><br>
-        
+
         <b>Score:</b> ${(data.score * 100).toFixed(1)}%<br><br>
 
         <b>Threats:</b>
@@ -159,4 +145,11 @@ function displayResults(data) {
     `;
 }
 
-
+// ---------------------------------------------------------
+// ⭐ NEW FEATURE — Open Full Web Analyzer Page
+// ---------------------------------------------------------
+document.getElementById("openAnalyzerBtn").addEventListener("click", () => {
+    chrome.tabs.create({
+        url: "file:///home/haron/AI-analizer%20page/page.html"
+    });
+});

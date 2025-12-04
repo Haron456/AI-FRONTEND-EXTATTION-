@@ -8,7 +8,7 @@
     font-family: "Courier New", monospace;
     background-color: #0d0d0d;
     color: #fff;
-    width: 440px; /* Bigger popup */
+    width: 440px;
     padding: 20px;
   }
 
@@ -40,7 +40,7 @@
     transform: scale(1.03);
   }
 
-  input[type="text"], input[type="file"] {
+  input[type="text"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #333;
@@ -69,22 +69,6 @@
     transition: width 0.7s ease, background 0.7s ease;
   }
 
-  .loader {
-    font-weight: bold;
-    color: #00ffff;
-    font-size: 16px;
-  }
-
-  .loader .dots {
-    display: inline-block;
-    animation: blink 1s infinite;
-  }
-
-  @keyframes blink {
-    0%, 50%, 100% { opacity: 1; }
-    25%, 75% { opacity: 0; }
-  }
-
   hr {
     margin: 20px 0;
     border-color: #333;
@@ -98,7 +82,11 @@
 <button class="btn" id="scanPageBtn">🔍 Scan Current Page</button>
 
 <input type="text" id="urlInput" placeholder="Enter URL to scan">
-<button class="btn" id="scanUrlBtn">Scan URL</button>
+<button class="btn" id="scanUrlBtn">Scan URL</button><br><br>
+<br><br>
+
+<!-- ⭐ Button to open your full analyzer web page ⭐ -->
+<button class="btn" id="openAnalyzerBtn"> Open Analyzer Page</button>
 
 <div id="threatMeter"></div>
 <hr>
